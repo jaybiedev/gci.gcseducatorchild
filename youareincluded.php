@@ -17,16 +17,11 @@ if (have_posts()) : while (have_posts()) : the_post();
     //Get classes for holder and holder inner
     $edgt_holder_params = educator_edge_get_holder_params_blog();
     ?>
-	<script>
-  $( function() {
-    $( "#tabs" ).tabs();
-  } );
-  </script>
     <div class="<?php echo esc_attr($edgt_holder_params['holder']); ?>">
         <?php do_action('educator_edge_after_container_open'); ?>
         
         <div class="<?php echo esc_attr($edgt_holder_params['inner']); ?>">
-            <div id="tabs">
+            <div id="yi-tabs">
                 <ul>
                     <li><a href="#tabs-video">Video</a></li>
                     <li><a href="#tabs-audio">Audio</a></li>
@@ -65,3 +60,10 @@ if (have_posts()) : while (have_posts()) : the_post();
 <?php endwhile; endif;
 
 get_footer(); ?>
+<script>
+    document.ready(function() {
+    jQuery( function() {
+        jQuery( "#yi-tabs" ).tabs();
+    });
+})
+    </script>
