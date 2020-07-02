@@ -17,7 +17,11 @@ if (have_posts()) : while (have_posts()) : the_post();
     //Get classes for holder and holder inner
     $edgt_holder_params = educator_edge_get_holder_params_blog();
     ?>
-	
+	<script>
+  $( function() {
+    $( "#tabs" ).tabs();
+  } );
+  </script>
     <div class="<?php echo esc_attr($edgt_holder_params['holder']); ?>">
         <?php do_action('educator_edge_after_container_open'); ?>
         
