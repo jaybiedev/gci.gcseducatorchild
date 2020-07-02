@@ -61,7 +61,7 @@ if (have_posts()) : while (have_posts()) : the_post();
 
 get_footer(); ?>
 <script>
-    document.ready(function() {
+    jQuery(document).ready(function() {
     jQuery( function() {
         jQuery( "#yi-tabs" ).tabs();
     });
