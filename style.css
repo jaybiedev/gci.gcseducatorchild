@@ -8,3 +8,7 @@ Version: 1.0.1
 Text Domain: educator
 Template: educator
 */
+@import 'gcsstyle.css';
+.ui-widget.ui-widget-content {
+   border: none;
+}
