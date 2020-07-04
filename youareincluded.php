@@ -17,8 +17,8 @@ if (have_posts()) : while (have_posts()) : the_post();
 	    $instructor = wp_get_single_post($instructor_id);
     }
 
-    $video_url = get_post_meta( get_the_ID(), 'video', true);
-    $audio_url = get_post_meta( get_the_ID(), 'audio_url', true);
+    $video_url = trim(get_post_meta( get_the_ID(), 'video', true));
+    $audio_url = trim(get_post_meta( get_the_ID(), 'audio_url', true));
 
     //Get blog single type and load proper helper
     educator_edge_include_blog_helper_functions('singles', 'standard');
