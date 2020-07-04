@@ -132,7 +132,7 @@ class WP_Widget_Instructors_Posts_List extends WP_Widget {
 							'meta_value'	=> $instructor_post->ID
 						));
 					?>
-						<ul class="sub-menu" style="display:none;">
+						<ul class="sub-menu">
 							<?php foreach ($instructorArticles as $article) { 
 								if ( get_queried_object_id() === $article->ID ) {
 									$aria_current = ' aria-current="page"';
