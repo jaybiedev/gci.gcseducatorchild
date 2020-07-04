@@ -128,6 +128,7 @@ class WP_Widget_Instructors_Posts_List extends WP_Widget {
 		$instance['title']     = sanitize_text_field( $new_instance['title'] );
 		$instance['number']    = (int) $new_instance['number'];
 		$instance['show_date'] = isset( $new_instance['show_date'] ) ? (bool) $new_instance['show_date'] : false;
+		$instance['includeCats'] = $new_instance['includeCats'];
 		return $instance;
 	}
 
@@ -146,10 +147,37 @@ class WP_Widget_Instructors_Posts_List extends WP_Widget {
 		<p><label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
 		<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo $title; ?>" /></p>
 
+		<p>
+			<label for="<?php echo esc_attr( $this->get_field_id( 'sortby' ) ); ?>"><?php _e( 'Sort by:' ); ?></label>
+			<select name="<?php echo esc_attr( $this->get_field_name( 'sortby' ) ); ?>" id="<?php echo esc_attr( $this->get_field_id( 'sortby' ) ); ?>" class="widefat">
+					<option value="post_title"<?php selected( $instance['sortby'], 'post_title' ); ?>><?php _e( 'Page title' ); ?></option>
+					<option value="menu_order"<?php selected( $instance['sortby'], 'menu_order' ); ?>><?php _e( 'Page order' ); ?></option>
+					<option value="ID"<?php selected( $instance['sortby'], 'ID' ); ?>><?php _e( 'Page ID' ); ?></option>
+			</select>
+		</p>
+		<p>
+				<label for="<?php echo esc_attr( $this->get_field_id( 'includeCats' ) ); ?>"><?php _e( 'Include categories:' ); ?></label><br />
+				<?php $args = array(
+					'post_type' => 'post',
+					'taxonomy' => 'category',
+				);
+				$terms = get_terms( $args );
+				//print_r($terms);
+				foreach( $terms as $id => $name ) { 
+					$checked = "";
+					if(in_array($name->name, $instance['includeCats'])){
+						$checked = "checked='checked'";
+					}
+					?>
+					<input type="checkbox" class="checkbox" id="<?php echo $this->get_field_id('includeCats'); ?>" name="includeCats[]" value="<?php echo $name->name; ?>"  <?php echo $checked; ?>/>
+					<label for="<?php echo $this->get_field_id('includeCats'); ?>"><?php echo $name->name; ?></label><br />
+				<?php } ?>
+		</p>
+		
 		<p><label for="<?php echo $this->get_field_id( 'number' ); ?>"><?php _e( 'Number of posts to show:' ); ?></label>
 		<input class="tiny-text" id="<?php echo $this->get_field_id( 'number' ); ?>" name="<?php echo $this->get_field_name( 'number' ); ?>" type="number" step="1" min="1" value="<?php echo $number; ?>" size="3" /></p>
 
-		<p><input class="checkbox" type="checkbox"<?php checked( $show_date ); ?> id="<?php echo $this->get_field_id( 'show_date' ); ?>" name="<?php echo $this->get_field_name( 'show_date' ); ?>" />
+		<p style="display:none;"><input class="checkbox" type="checkbox"<?php checked( $show_date ); ?> id="<?php echo $this->get_field_id( 'show_date' ); ?>" name="<?php echo $this->get_field_name( 'show_date' ); ?>" />
 		<label for="<?php echo $this->get_field_id( 'show_date' ); ?>"><?php _e( 'Display post date?' ); ?></label></p>
 		<?php
 	}
