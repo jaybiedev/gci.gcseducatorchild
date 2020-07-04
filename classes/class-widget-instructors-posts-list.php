@@ -80,7 +80,7 @@ class WP_Widget_Instructors_Posts_List extends WP_Widget {
 					'no_found_rows'       => true,
 					'post_status'         => 'publish',
 					'ignore_sticky_posts' => true,
-					'order_by'			  => 'post_title',
+					'orderby'			  => 'title',
 					'tax_query' => array(
 						'relation' => 'AND',
 							array(
