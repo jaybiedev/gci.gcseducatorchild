@@ -174,8 +174,14 @@ class WP_Widget_Instructors_Posts_List extends WP_Widget {
 				<label for="<?php echo esc_attr( $this->get_field_id( 'includeCats' ) ); ?>"><?php _e( 'Include categories:' ); ?></label><br />
 				<?php $args = array(
 					'post_type' => array('instructor'),
-					'taxonomy' => 'category',
+					'taxonomy' => 'instructor-category',
+					'orderby' => 'name',
+               		'order'   => 'ASC'
 				);
+
+				$cats = get_categories($args);
+				print_r($cats);
+
 				$terms = get_terms( $args );
 				
 				print_r($terms);
