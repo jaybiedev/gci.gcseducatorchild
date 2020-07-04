@@ -48,6 +48,10 @@ if (have_posts()) : while (have_posts()) : the_post();
     #yi-tabs .ui-state-active a{
       color: #444;
     }
+    .yi-tab-content {
+        min-height: 500px;
+        overflow: auto;
+    }
  
     </style>
     <div class="<?php echo esc_attr($edgt_holder_params['holder']); ?>">
@@ -73,7 +77,7 @@ if (have_posts()) : while (have_posts()) : the_post();
                         <li><a href="#tabs-trancript"><i class="yi-fa fa fa-book"></i>Transcript</a></li>
                     </ul>
 			        <?php if (!empty($video_url)) { ?>
-                        <div id="tabs-video">
+                        <div id="tabs-video" class="yi-tab-content">
                             <p>
                                 <video controls="controls" width="80%" height="auto">
                                     <source src="<?php echo $video_url;?>" type="video/mp4" />
@@ -83,7 +87,7 @@ if (have_posts()) : while (have_posts()) : the_post();
                         </div>
                     <?php }?>
                     <?php if (!empty($audio_url)) { ?>
-                                <div id="tabs-audio">
+                                <div id="tabs-audio" class="yi-tab-content">
                                     <p>
                                         <audio controls="controls">
                                             <source src="<?php echo $audio_url?>" type="audio/mpeg" width="100%" />
@@ -93,12 +97,12 @@ if (have_posts()) : while (have_posts()) : the_post();
                                 </div>
                     <?php }?>
                         <!--
-                        <div id="tabs-download">
+                        <div id="tabs-download"  class="yi-tab-content">
                             <p>Link1</p>
                             <p>Link2</p>
                         </div>
                         -->
-                    <div id="tabs-trancript" style="height:500px;overflow:auto;">
+                    <div id="tabs-trancript"  class="yi-tab-content">
                         <?php//  educator_edge_get_blog_single('standard'); ?>
                         <div class="controls" style="height:25px" title="Print transcript">
                             <i class="yi-fa fa fa-print" style="float:right;"></i>
