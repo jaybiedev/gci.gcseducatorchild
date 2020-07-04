@@ -10,6 +10,11 @@ get_template_part('slider');
 global $post;
 
 if (have_posts()) : while (have_posts()) : the_post();
+
+    $instructor = get_post_meta( get_the_ID(), 'instructor', true);
+    $video_url = get_post_meta( get_the_ID(), 'video', true);
+    $audio_url = get_post_meta( get_the_ID(), 'audio_url', true);
+
     //Get blog single type and load proper helper
     educator_edge_include_blog_helper_functions('singles', 'standard');
 
