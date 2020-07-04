@@ -168,6 +168,7 @@ class WP_Widget_Instructors_Posts_List extends WP_Widget {
 					'taxonomy' => 'category',
 				);
 				$terms = get_terms( $args );
+				
 				//print_r($terms);
 				foreach( $terms as $id => $name ) { 
 					$checked = "";
@@ -175,7 +176,7 @@ class WP_Widget_Instructors_Posts_List extends WP_Widget {
 						$checked = "checked='checked'";
 					}
 					?>
-					<input type="checkbox" class="checkbox" id="<?php echo $this->get_field_id('includeCats'); ?>" name="<?php echo $this->get_field_name( 'includeCats[]' ); ?>" value="<?php echo $id; ?>"  <?php echo $checked; ?>/>
+					<input type="checkbox" class="checkbox" id="<?php echo $this->get_field_id('includeCats'); ?>" name="<?php echo $this->get_field_name( 'includeCats[]' ); ?>" value="<?php echo $name->term_id;?>"  <?php echo $checked; ?>/>
 					<label for="<?php echo $this->get_field_id('includeCats'); ?>"><?php echo $name->name; ?></label><br />
 				<?php } ?>
 		</p>
