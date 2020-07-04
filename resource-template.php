@@ -97,7 +97,7 @@ if (have_posts()) : while (have_posts()) : the_post();
                             <p>Link2</p>
                         </div>
                         -->
-                    <div id="tabs-trancript" style="height:400px;overflow:auto;">
+                    <div id="tabs-trancript" style="height:500px;overflow:auto;">
                         <?php//  educator_edge_get_blog_single('standard'); ?>
                         <div class="controls" style="height:25px" title="Print transcript">
                             <i class="yi-fa fa fa-print" style="float:right;"></i>
@@ -108,9 +108,9 @@ if (have_posts()) : while (have_posts()) : the_post();
                     </div>               
                 </div>
                 <?php if (!empty($instructor)) {?>
-                    <h3>About <?php $instructor->post_title;?></h3>
+                    <h3>About <?php echo $instructor->post_title;?></h3>
                     <div><?php echo wpautop($instructor->post_content);?></div>
-                    <a href="#">Read more about <?php echo $instructor->post_title;?></a>
+                    <a href="#">Read more</a>
                 <?php }?>
                 <?php do_action('educator_edge_page_after_content');?>
             </div>
