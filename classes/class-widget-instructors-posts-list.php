@@ -107,9 +107,8 @@ class WP_Widget_Instructors_Posts_List extends WP_Widget {
 		<ul>
 			<?php foreach ( $r->posts as $instructor_post ) : ?>
 				<?php
-				print_r($instructor_post);
-				$post_title   = get_the_title( $instructor_post->ID );
-				$title        = ( ! empty( $post_title ) ) ? $post_title : __( '(no title)' );
+				// $post_title   = get_the_title( $instructor_post->ID );
+				$title        = ( ! empty( $instructor_post->post_title ) ) ? $instructor_post->post_title : __( '(no title)' );
 				$aria_current = '';
 
 				if ( get_queried_object_id() === $instructor_post->ID ) {
@@ -131,14 +130,12 @@ class WP_Widget_Instructors_Posts_List extends WP_Widget {
 						));
 					?>
 						<ul>
-							<?php foreach ($instructorArticles as $article) { 				print_r($article);?>
+							<?php foreach ($instructorArticles as $article) { ;?>
 								<li>
-								<a href="<?php the_permalink( $article->ID ); ?>"<?php echo $aria_current; ?>><?php echo $article->post_title; ?></a>
+								<a href="<?php the_permalink( $article->ID ); ?>"><?php echo $article->post_title;?></a>
 								</li>
 							<?php }?>
 						</ul>
-					?>
-
 				</li>
 			<?php endforeach; ?>
 		</ul>
