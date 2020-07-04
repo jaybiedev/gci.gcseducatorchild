@@ -55,10 +55,11 @@ if (have_posts()) : while (have_posts()) : the_post();
         <div class="<?php echo esc_attr($edgt_holder_params['inner']); ?>">
         <div class="edgt-grid-row">
             <div <?php echo educator_edge_get_content_sidebar_class(); ?>>
-                <!-- <h2 itemprop="name" class="yi-title entry-title edgt-post-title"><?php// echo $post->post_title;?></h2> -->  
+                <h2 itemprop="name" class="yi-title entry-title edgt-post-title"><?php echo $post->post_title;?> 
                 <?php if (!empty($instructor)) {?>
-                    <div><h3><?php echo $instructor->post_title;?></h3></div>
+                    with <?php echo $instructor->post_title;?>
                 <?php }?>
+                </h3>
                 <div><?php the_excerpt();?></div>
                 <div id="yi-tabs">
                     <ul>
