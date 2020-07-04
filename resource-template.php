@@ -108,7 +108,7 @@ if (have_posts()) : while (have_posts()) : the_post();
                     </div>               
                 </div>
                 <?php if (!empty($instructor)) {?>
-                    <div><?php echo wpautop($instructor->post_content);?>
+                    <div><?php echo wpautop($instructor->post_content);?></div>
                 <?php }?>
                 <?php do_action('educator_edge_page_after_content');?>
             </div>
