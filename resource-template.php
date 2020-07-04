@@ -14,13 +14,11 @@ if (have_posts()) : while (have_posts()) : the_post();
     $instructor = null;
     $instructor_id = get_post_meta( get_the_ID(), 'instructor', true);
     if (!empty($instructor_id)) {
-	$instructor = wp_get_single_post($instructor_id);
+	    $instructor = wp_get_single_post($instructor_id);
     }
 
     $video_url = get_post_meta( get_the_ID(), 'video', true);
     $audio_url = get_post_meta( get_the_ID(), 'audio_url', true);
-
-
 
     //Get blog single type and load proper helper
     educator_edge_include_blog_helper_functions('singles', 'standard');
@@ -55,29 +53,25 @@ if (have_posts()) : while (have_posts()) : the_post();
     <div class="<?php echo esc_attr($edgt_holder_params['holder']); ?>">
         <?php do_action('educator_edge_after_container_open'); ?>
         <div class="<?php echo esc_attr($edgt_holder_params['inner']); ?>">
-	    <?php if (!empty($instructor)) {?>
-	    <div>
-		<h3><?php echo $instructor->post_title;?></h3>
-	    </div>
-	    <?php }?>
-	    <div>
-		<?php the_excerpt();?>
-	    </div>
-            <div class="edgt-grid-row">
-    	        <div <?php echo educator_edge_get_content_sidebar_class(); ?>>
-                    <!-- <h2 itemprop="name" class="yi-title entry-title edgt-post-title"><?php// echo $post->post_title;?></h2> -->  
-                    <div id="yi-tabs">
-                        <ul>
-			    <?php if (!empty($video_url)) { ?>
-                            <li><a href="#tabs-video"><i class="yi-fa fa fa-video-camera"></i>Video</a></li>
-			    <?php }?>
-			    <?php if (!empty($audio_url)) { ?>
-                            <li><a href="#tabs-audio"><i class="yi-fa fa fa-headphones"></i>Audio</a></li>
-			    <?php }?>
-                            <!-- <li><a href="#tabs-download"><i class="yi-fa fa fa-download"></i>Download</a></li>-->
-                            <li><a href="#tabs-trancript"><i class="yi-fa fa fa-book"></i>Transcript</a></li>
-                        </ul>
-			<?php if (!empty($video_url)) { ?>
+        <div class="edgt-grid-row">
+            <div <?php echo educator_edge_get_content_sidebar_class(); ?>>
+                <!-- <h2 itemprop="name" class="yi-title entry-title edgt-post-title"><?php// echo $post->post_title;?></h2> -->  
+                <?php if (!empty($instructor)) {?>
+                    <div><h3><?php echo $instructor->post_title;?></h3></div>
+                <?php }?>
+                <div><?php the_excerpt();?></div>
+                <div id="yi-tabs">
+                    <ul>
+                        <?php if (!empty($video_url)) { ?>
+                                    <li><a href="#tabs-video"><i class="yi-fa fa fa-video-camera"></i>Video</a></li>
+                        <?php }?>
+                        <?php if (!empty($audio_url)) { ?>
+                                    <li><a href="#tabs-audio"><i class="yi-fa fa fa-headphones"></i>Audio</a></li>
+                        <?php }?>
+                        <!-- <li><a href="#tabs-download"><i class="yi-fa fa fa-download"></i>Download</a></li>-->
+                        <li><a href="#tabs-trancript"><i class="yi-fa fa fa-book"></i>Transcript</a></li>
+                    </ul>
+			        <?php if (!empty($video_url)) { ?>
                         <div id="tabs-video">
                             <p>
                                 <video controls="controls" width="80%" height="auto">
@@ -86,46 +80,43 @@ if (have_posts()) : while (have_posts()) : the_post();
                                 </video>
                             </p>
                         </div>
-			<?php }?>
-			<?php if (!empty($audio_url)) { ?>
-                        <div id="tabs-audio">
-                            <p>
-                                <audio controls="controls">
-                                    <source src="<?php echo $audio_url?>" type="audio/mpeg" width="100%" />
-                                    Your browser does not support online audio player.
-                                </audio>
-                            </p>
-                        </div>
-			<?php }?>
+                    <?php }?>
+                    <?php if (!empty($audio_url)) { ?>
+                                <div id="tabs-audio">
+                                    <p>
+                                        <audio controls="controls">
+                                            <source src="<?php echo $audio_url?>" type="audio/mpeg" width="100%" />
+                                            Your browser does not support online audio player.
+                                        </audio>
+                                    </p>
+                                </div>
+                    <?php }?>
                         <!--
                         <div id="tabs-download">
                             <p>Link1</p>
                             <p>Link2</p>
                         </div>
                         -->
-                        <div id="tabs-trancript" style="height:400px;overflow:auto;">
-                            <?php//  educator_edge_get_blog_single('standard'); ?>
-                            <div class="controls" style="height:25px" title="Print transcript">
-                                <i class="yi-fa fa fa-print" style="float:right;"></i>
-                            </div>
-                            <div class="edgt-post-text-maini printDiv">
-                                <?php
-                                    the_content();
-                                    do_action('educator_edge_page_after_content');
-                                ?>
-                            </div>
+                    <div id="tabs-trancript" style="height:400px;overflow:auto;">
+                        <?php//  educator_edge_get_blog_single('standard'); ?>
+                        <div class="controls" style="height:25px" title="Print transcript">
+                            <i class="yi-fa fa fa-print" style="float:right;"></i>
                         </div>
-                    </div>                
+                        <div class="edgt-post-text-maini printDiv">
+                            <?php the_content();?>
+                        </div>
+                    </div>               
                 </div>
-                <?php if($edgt_sidebar_layout !== 'no-sidebar') { ?>
-                    <div <?php echo educator_edge_get_sidebar_holder_class(); ?>>
-                            <?php get_sidebar(); ?>
-                    </div>
-                <?php } ?>                                         
+                <?php if (!empty($instructor)) {?>
+                    <div><?php echo wpautop($instructor->post_content);?>
+                <?php }?>
+                <?php do_action('educator_edge_page_after_content');?>
             </div>
-	    <?php if (!empty($instructor)) {
-		echo wpautop($instructor->post_content);
-	     }?>
+            <?php if($edgt_sidebar_layout !== 'no-sidebar') { ?>
+                <div <?php echo educator_edge_get_sidebar_holder_class(); ?>>
+                        <?php get_sidebar(); ?>
+                </div>
+            <?php } ?>   
         </div>
         <?php do_action('educator_edge_before_container_close'); ?>
     </div>
