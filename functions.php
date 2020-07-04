@@ -1,4 +1,10 @@
 <?php
+require_once( __DIR__ . '/classes/class-widget-instructors-posts-list.php' );
+
+function register_custom_widgets() {
+	register_widget( 'WP_Widget_Instructors_Posts_List' );
+}
+add_action( 'widgets_init', 'register_custom_widgets' );
 
 /*** Child Theme Function  ***/
 if ( ! function_exists( 'educator_edge_child_theme_enqueue_scripts' ) ) {

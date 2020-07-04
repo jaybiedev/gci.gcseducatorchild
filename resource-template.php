@@ -125,6 +125,14 @@ if (have_posts()) : while (have_posts()) : the_post();
 <?php endwhile; endif;
 
 get_footer(); ?>
+
+
+<?php
+function get_sidebar_for_yi_resources() {
+}
+?>
+
+
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script>
 jQuery(document).ready(function() {
