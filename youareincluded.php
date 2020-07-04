@@ -49,7 +49,7 @@ if (have_posts()) : while (have_posts()) : the_post();
         <div class="<?php echo esc_attr($edgt_holder_params['inner']); ?>">
             <div class="edgt-grid-row">
     	        <div <?php echo educator_edge_get_content_sidebar_class(); ?>>
-                    <h2 itemprop="name" class="yi-title entry-title edgt-post-title"><?php echo $post->post_title;?></h2>   
+                    <!-- <h2 itemprop="name" class="yi-title entry-title edgt-post-title"><?php// echo $post->post_title;?></h2> -->  
                     <div id="yi-tabs">
                         <ul>
                             <li><a href="#tabs-video"><i class="yi-fa fa fa-video-camera"></i>Video</a></li>
@@ -82,13 +82,14 @@ if (have_posts()) : while (have_posts()) : the_post();
                         <div id="tabs-trancript">
                             <?php//  educator_edge_get_blog_single('standard'); ?>
                             <div class="controls" style="height:25px" title="Print transcript">
-                            <i class="yi-fa fa fa-print" style="float:right;"></i>
+                                <i class="yi-fa fa fa-print" style="float:right;"></i>
                             </div>
                             <div class="edgt-post-text-maini printDiv">
-                            <?php
-                                        the_content();
-                                        do_action('educator_edge_page_after_content');
-                                    ?>
+                                <?php
+                                    the_content();
+                                    do_action('educator_edge_page_after_content');
+                                ?>
+                            </div>
                         </div>
                     </div>                
                 </div>
