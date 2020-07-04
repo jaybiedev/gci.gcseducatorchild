@@ -50,6 +50,8 @@ class WP_Widget_Instructors_Posts_List extends WP_Widget {
 		/** This filter is documented in wp-includes/widgets/class-wp-widget-pages.php */
 		$title = apply_filters( 'widget_title', $title, $instance, $this->id_base );
 
+		$includeCats = ( ! empty( $instance['includeCats'] ) ) ? $instance['includeCats'] : [];
+
 		$number = ( ! empty( $instance['number'] ) ) ? absint( $instance['number'] ) : 5;
 		if ( ! $number ) {
 			$number = 5;
@@ -67,6 +69,7 @@ class WP_Widget_Instructors_Posts_List extends WP_Widget {
 			 *
 			 * @param array $args     An array of arguments used to retrieve the recent posts.
 			 * @param array $instance Array of settings for the current widget.
+			 * @todo: add category filter
 			 */
 			apply_filters(
 				'widget_posts_args',
@@ -142,6 +145,7 @@ class WP_Widget_Instructors_Posts_List extends WP_Widget {
 	public function form( $instance ) {
 		$title     = isset( $instance['title'] ) ? esc_attr( $instance['title'] ) : '';
 		$number    = isset( $instance['number'] ) ? absint( $instance['number'] ) : 5;
+		$includeCats    = isset( $instance['includeCats'] ) ? absint( $instance['includeCats'] ) : [];
 		$show_date = isset( $instance['show_date'] ) ? (bool) $instance['show_date'] : false;
 		?>
 		<p><label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
@@ -150,8 +154,8 @@ class WP_Widget_Instructors_Posts_List extends WP_Widget {
 		<p>
 			<label for="<?php echo esc_attr( $this->get_field_id( 'sortby' ) ); ?>"><?php _e( 'Sort by:' ); ?></label>
 			<select name="<?php echo esc_attr( $this->get_field_name( 'sortby' ) ); ?>" id="<?php echo esc_attr( $this->get_field_id( 'sortby' ) ); ?>" class="widefat">
-					<option value="post_title"<?php selected( $instance['sortby'], 'post_title' ); ?>><?php _e( 'Page title' ); ?></option>
-					<option value="menu_order"<?php selected( $instance['sortby'], 'menu_order' ); ?>><?php _e( 'Page order' ); ?></option>
+					<option value="post_title"<?php selected( $instance['sortby'], 'post_title' ); ?>><?php _e( 'Instructor Name' ); ?></option>
+					<option value="menu_order"<?php selected( $instance['sortby'], 'menu_order' ); ?>><?php _e( 'Order' ); ?></option>
 					<option value="ID"<?php selected( $instance['sortby'], 'ID' ); ?>><?php _e( 'Page ID' ); ?></option>
 			</select>
 		</p>
@@ -163,6 +167,7 @@ class WP_Widget_Instructors_Posts_List extends WP_Widget {
 				);
 				$terms = get_terms( $args );
 				//print_r($terms);
+				print_r($includeCats);
 				foreach( $terms as $id => $name ) { 
 					$checked = "";
 					if(in_array($name->name, $instance['includeCats'])){
