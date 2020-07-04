@@ -45,7 +45,7 @@ class WP_Widget_Instructors_Posts_List extends WP_Widget {
 			$args['widget_id'] = $this->id;
 		}
 
-		$title = ( ! empty( $instance['title'] ) ) ? $instance['title'] : __( 'Instrcutors Posts List' );
+		$title = ( ! empty( $instance['title'] ) ) ? $instance['title'] : __( 'Instructors Posts List' );
 
 		/** This filter is documented in wp-includes/widgets/class-wp-widget-pages.php */
 		$title = apply_filters( 'widget_title', $title, $instance, $this->id_base );
@@ -57,7 +57,7 @@ class WP_Widget_Instructors_Posts_List extends WP_Widget {
 			$number = 5;
 		}
 		$show_date = isset( $instance['show_date'] ) ? $instance['show_date'] : false;
-
+		
 		$r = new WP_Query(
 			/**
 			 * Filters the arguments for the Recent Posts widget.
@@ -78,6 +78,7 @@ class WP_Widget_Instructors_Posts_List extends WP_Widget {
 					'no_found_rows'       => true,
 					'post_status'         => 'publish',
 					'ignore_sticky_posts' => true,
+					'cat'	              => $includeCats
 				),
 				$instance
 			)
