@@ -52,7 +52,7 @@ class WP_Widget_Instructors_Posts_List extends WP_Widget {
 
 		$includeCats = ( ! empty( $instance['includeCats'] ) ) ? $instance['includeCats'] : [];
 
-		print_r($includeCats);
+	        // print_r($includeCats);
 		$number = ( ! empty( $instance['number'] ) ) ? absint( $instance['number'] ) : 5;
 		if ( ! $number ) {
 			$number = 5;
@@ -79,7 +79,17 @@ class WP_Widget_Instructors_Posts_List extends WP_Widget {
 					'no_found_rows'       => true,
 					'post_status'         => 'publish',
 					'ignore_sticky_posts' => true,
-					'cat'	              => $includeCats
+
+'tax_query' => array(
+    'relation' => 'AND',
+        array(
+            'taxonomy' => 'category',
+            'field'    => 'term_id',
+            'terms'    => $includeCats,
+	    'include_children' =>false,
+        ),
+    ),				
+
 				),
 				$instance
 			)
