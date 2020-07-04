@@ -105,21 +105,40 @@ class WP_Widget_Instructors_Posts_List extends WP_Widget {
 		}
 		?>
 		<ul>
-			<?php foreach ( $r->posts as $recent_post ) : ?>
+			<?php foreach ( $r->posts as $instructor_post ) : ?>
 				<?php
-				$post_title   = get_the_title( $recent_post->ID );
+				print_r($instructor_post);
+				$post_title   = get_the_title( $instructor_post->ID );
 				$title        = ( ! empty( $post_title ) ) ? $post_title : __( '(no title)' );
 				$aria_current = '';
 
-				if ( get_queried_object_id() === $recent_post->ID ) {
+				if ( get_queried_object_id() === $instructor_post->ID ) {
 					$aria_current = ' aria-current="page"';
 				}
 				?>
 				<li>
-					<a href="<?php the_permalink( $recent_post->ID ); ?>"<?php echo $aria_current; ?>><?php echo $title; ?></a>
-					<?php if ( $show_date ) : ?>
-						<span class="post-date"><?php echo get_the_date( '', $recent_post->ID ); ?></span>
+					<a href="<?php the_permalink( $instructor_post->ID ); ?>"<?php echo $aria_current; ?>><?php echo $title; ?></a>
+					<?php if (false &&  $show_date ) : ?>
+						<span class="post-date"><?php echo get_the_date( '', $instructor_post->ID ); ?></span>
 					<?php endif; ?>
+					<?php
+						// get posts by instructor
+						$instructorArticles = get_posts(array(
+							'numberposts'	=> -1,
+							'post_type'		=> 'post',
+							'meta_key'		=> 'instructor',
+							'meta_value'	=> $instructor_post->ID
+						));
+					?>
+						<ul>
+							<?php foreach ($instructorArticles as $article) { 				print_r($article);?>
+								<li>
+								<a href="<?php the_permalink( $article->ID ); ?>"<?php echo $aria_current; ?>><?php echo $article->post_title; ?></a>
+								</li>
+							<?php }?>
+						</ul>
+					?>
+
 				</li>
 			<?php endforeach; ?>
 		</ul>
