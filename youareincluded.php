@@ -79,7 +79,7 @@ if (have_posts()) : while (have_posts()) : the_post();
 			        <?php if (!empty($video_url)) { ?>
                         <div id="tabs-video" class="yi-tab-content">
                             <p>
-                                <video controls="controls" width="80%" height="auto">
+                                <video controls="controls" width="80%" height="auto" autoplay>
                                     <source src="<?php echo $video_url;?>" type="video/mp4" />
                                     Your browser does not support the video tag.
                                 </video>
