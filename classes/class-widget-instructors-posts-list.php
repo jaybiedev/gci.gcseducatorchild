@@ -52,6 +52,7 @@ class WP_Widget_Instructors_Posts_List extends WP_Widget {
 
 		$includeCats = ( ! empty( $instance['includeCats'] ) ) ? $instance['includeCats'] : [];
 
+		print_r($includeCats);
 		$number = ( ! empty( $instance['number'] ) ) ? absint( $instance['number'] ) : 5;
 		if ( ! $number ) {
 			$number = 5;
@@ -174,7 +175,7 @@ class WP_Widget_Instructors_Posts_List extends WP_Widget {
 						$checked = "checked='checked'";
 					}
 					?>
-					<input type="checkbox" class="checkbox" id="<?php echo $this->get_field_id('includeCats'); ?>" name="<?php echo $this->get_field_name( 'includeCats[]' ); ?>" value="<?php echo $name->name; ?>"  <?php echo $checked; ?>/>
+					<input type="checkbox" class="checkbox" id="<?php echo $this->get_field_id('includeCats'); ?>" name="<?php echo $this->get_field_name( 'includeCats[]' ); ?>" value="<?php echo $name->id; ?>"  <?php echo $checked; ?>/>
 					<label for="<?php echo $this->get_field_id('includeCats'); ?>"><?php echo $name->name; ?></label><br />
 				<?php } ?>
 		</p>
