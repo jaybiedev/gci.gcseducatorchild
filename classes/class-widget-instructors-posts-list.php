@@ -80,6 +80,7 @@ class WP_Widget_Instructors_Posts_List extends WP_Widget {
 					'no_found_rows'       => true,
 					'post_status'         => 'publish',
 					'ignore_sticky_posts' => true,
+					'order_by'			  => 'post_title',
 					'tax_query' => array(
 						'relation' => 'AND',
 							array(
@@ -117,7 +118,7 @@ class WP_Widget_Instructors_Posts_List extends WP_Widget {
 					$aria_current = ' aria-current="page"';
 				}
 				?>
-				<li class="menu-item menu-item-type-post_type menu-item-object-page current-page-ancestor current-menu-ancestor current-menu-parent current-page-parent current_page_parent current_page_ancestor menu-item-has-children <?php echo $this->id;?>">
+				<li id="menu-item-<?php echo $instructor_post->ID;?>" class="menu-item menu-item-type-post_type menu-item-object-page current-page-ancestor current-menu-ancestor current-menu-parent current-page-parent current_page_parent current_page_ancestor menu-item-has-children menu-item-<?php echo $instructor_post->ID;?>">
 					<a href="<?php the_permalink( $instructor_post->ID ); ?>"<?php echo $aria_current; ?>><?php echo $title; ?></a>
 					<?php if (false &&  $show_date ) : ?>
 						<span class="post-date"><?php echo get_the_date( '', $instructor_post->ID ); ?></span>
@@ -133,7 +134,7 @@ class WP_Widget_Instructors_Posts_List extends WP_Widget {
 					?>
 						<ul class="sub-menu" style="display:none;">
 							<?php foreach ($instructorArticles as $article) { ;?>
-								<li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-4141 current_page_item">
+								<li  id="menu-item-<?php echo $article->ID;?>" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-4141 current_page_item menu-item-<?php echo $article->ID;?>">
 								<a href="<?php the_permalink( $article->ID ); ?>"><?php echo $article->post_title;?></a>
 								</li>
 							<?php }?>
