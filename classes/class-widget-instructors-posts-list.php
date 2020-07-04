@@ -180,19 +180,17 @@ class WP_Widget_Instructors_Posts_List extends WP_Widget {
 				);
 
 				$cats = get_categories($args);
-				print_r($cats);
-
-				$terms = get_terms( $args );
-				
-				print_r($terms);
-				foreach( $terms as $id => $name ) { 
+				// print_r($cats);
+				//$terms = get_terms( $args );
+				// print_r($terms);
+				foreach( $cats as $key => $cat ) { 
 					$checked = "";
-					if(in_array($name->term_id, $instance['includeCats'])){
+					if(in_array($cat->term_id, $instance['includeCats'])){
 						$checked = "checked='checked'";
 					}
 					?>
-					<input type="checkbox" class="checkbox" id="<?php echo $this->get_field_id('includeCats'); ?>" name="<?php echo $this->get_field_name( 'includeCats[]' ); ?>" value="<?php echo $name->term_id;?>"  <?php echo $checked; ?>/>
-					<label for="<?php echo $this->get_field_id('includeCats'); ?>"><?php echo $name->name; ?></label><br />
+					<input type="checkbox" class="checkbox" id="<?php echo $this->get_field_id('includeCats'); ?>" name="<?php echo $this->get_field_name( 'includeCats[]' ); ?>" value="<?php echo $cat->term_id;?>"  <?php echo $checked; ?>/>
+					<label for="<?php echo $this->get_field_id('includeCats'); ?>"><?php echo $cat->name; ?></label><br />
 				<?php } ?>
 		</p>
 		
