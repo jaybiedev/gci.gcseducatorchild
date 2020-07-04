@@ -75,21 +75,20 @@ class WP_Widget_Instructors_Posts_List extends WP_Widget {
 			apply_filters(
 				'widget_posts_args',
 				array(
+					'post_type'			  => array('instructor'),
 					'posts_per_page'      => $number,
 					'no_found_rows'       => true,
 					'post_status'         => 'publish',
 					'ignore_sticky_posts' => true,
-
-'tax_query' => array(
-    'relation' => 'AND',
-        array(
-            'taxonomy' => 'category',
-            'field'    => 'term_id',
-            'terms'    => $includeCats,
-	    'include_children' =>false,
-        ),
-    ),				
-
+					'tax_query' => array(
+						'relation' => 'AND',
+							array(
+								'taxonomy' => 'category',
+								'field'    => 'term_id',
+								'terms'    => $includeCats,
+							'include_children' =>false,
+							),
+						),				
 				),
 				$instance
 			)
@@ -174,7 +173,7 @@ class WP_Widget_Instructors_Posts_List extends WP_Widget {
 		<p>
 				<label for="<?php echo esc_attr( $this->get_field_id( 'includeCats' ) ); ?>"><?php _e( 'Include categories:' ); ?></label><br />
 				<?php $args = array(
-					'post_type' => 'post',
+					'post_type' => 'instructor',
 					'taxonomy' => 'category',
 				);
 				$terms = get_terms( $args );
