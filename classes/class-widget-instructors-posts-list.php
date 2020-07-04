@@ -167,7 +167,6 @@ class WP_Widget_Instructors_Posts_List extends WP_Widget {
 				);
 				$terms = get_terms( $args );
 				//print_r($terms);
-				print_r($includeCats);
 				foreach( $terms as $id => $name ) { 
 					$checked = "";
 					if(in_array($name->name, $instance['includeCats'])){
