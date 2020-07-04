@@ -104,8 +104,9 @@ class WP_Widget_Instructors_Posts_List extends WP_Widget {
 			echo $args['before_title'] . $title . $args['after_title'];
 		}
 		?>
+		<div class="widget widget_nav_menu">
 		<div class="menu-resources-sidebar-container">
-		<ul class="menu">
+		<ul id="<?php echo $this->id;?>" class="menu">
 			<?php foreach ( $r->posts as $instructor_post ) : ?>
 				<?php
 				// $post_title   = get_the_title( $instructor_post->ID );
@@ -116,7 +117,7 @@ class WP_Widget_Instructors_Posts_List extends WP_Widget {
 					$aria_current = ' aria-current="page"';
 				}
 				?>
-				<li class="menu-item menu-item-type-post_type menu-item-object-page current-page-ancestor current-menu-ancestor current-menu-parent current-page-parent current_page_parent current_page_ancestor menu-item-has-children">
+				<li class="menu-item menu-item-type-post_type menu-item-object-page current-page-ancestor current-menu-ancestor current-menu-parent current-page-parent current_page_parent current_page_ancestor menu-item-has-children <?php echo $this->id;?>">
 					<a href="<?php the_permalink( $instructor_post->ID ); ?>"<?php echo $aria_current; ?>><?php echo $title; ?></a>
 					<?php if (false &&  $show_date ) : ?>
 						<span class="post-date"><?php echo get_the_date( '', $instructor_post->ID ); ?></span>
@@ -140,6 +141,7 @@ class WP_Widget_Instructors_Posts_List extends WP_Widget {
 				</li>
 			<?php endforeach; ?>
 		</ul>
+		</div>
 		</div>
 		<?php
 		echo $args['after_widget'];
