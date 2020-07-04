@@ -83,7 +83,7 @@ class WP_Widget_Instructors_Posts_List extends WP_Widget {
 					'tax_query' => array(
 						'relation' => 'AND',
 							array(
-								'taxonomy' => 'category',
+								'taxonomy' => 'instructor-category',
 								'field'    => 'term_id',
 								'terms'    => $includeCats,
 							'include_children' =>false,
@@ -181,8 +181,6 @@ class WP_Widget_Instructors_Posts_List extends WP_Widget {
 
 				$cats = get_categories($args);
 				// print_r($cats);
-				//$terms = get_terms( $args );
-				// print_r($terms);
 				foreach( $cats as $key => $cat ) { 
 					$checked = "";
 					if(in_array($cat->term_id, $instance['includeCats'])){
