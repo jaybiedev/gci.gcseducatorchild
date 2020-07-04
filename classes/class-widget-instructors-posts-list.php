@@ -104,7 +104,8 @@ class WP_Widget_Instructors_Posts_List extends WP_Widget {
 			echo $args['before_title'] . $title . $args['after_title'];
 		}
 		?>
-		<ul>
+		<div class="menu-resources-sidebar-container">
+		<ul class="menu">
 			<?php foreach ( $r->posts as $instructor_post ) : ?>
 				<?php
 				// $post_title   = get_the_title( $instructor_post->ID );
@@ -115,7 +116,7 @@ class WP_Widget_Instructors_Posts_List extends WP_Widget {
 					$aria_current = ' aria-current="page"';
 				}
 				?>
-				<li>
+				<li class="menu-item menu-item-type-post_type menu-item-object-page current-page-ancestor current-menu-ancestor current-menu-parent current-page-parent current_page_parent current_page_ancestor menu-item-has-children">
 					<a href="<?php the_permalink( $instructor_post->ID ); ?>"<?php echo $aria_current; ?>><?php echo $title; ?></a>
 					<?php if (false &&  $show_date ) : ?>
 						<span class="post-date"><?php echo get_the_date( '', $instructor_post->ID ); ?></span>
@@ -129,9 +130,9 @@ class WP_Widget_Instructors_Posts_List extends WP_Widget {
 							'meta_value'	=> $instructor_post->ID
 						));
 					?>
-						<ul>
+						<ul class="sub-menu" style="display:none;">
 							<?php foreach ($instructorArticles as $article) { ;?>
-								<li>
+								<li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-4141 current_page_item">
 								<a href="<?php the_permalink( $article->ID ); ?>"><?php echo $article->post_title;?></a>
 								</li>
 							<?php }?>
@@ -139,6 +140,7 @@ class WP_Widget_Instructors_Posts_List extends WP_Widget {
 				</li>
 			<?php endforeach; ?>
 		</ul>
+		</div>
 		<?php
 		echo $args['after_widget'];
 	}
