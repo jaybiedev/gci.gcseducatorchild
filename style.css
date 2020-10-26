@@ -4,7 +4,7 @@ Theme URI: http://educator.edge-themes.com
 Description: A child theme of Educator Theme
 Author: Edge Themes
 Author URI: http://themeforest.net/user/edge-themes
-Version: 1.0.1
+Version: 1.5.1
 Text Domain: educator
 Template: educator
 */
@@ -12,3 +12,46 @@ Template: educator
 .ui-widget.ui-widget-content {
    border: none;
 }
+
+/** overrides of things undesired from template **/
+.edgt-content .edgt-container {
+	margin-bottom: 50px;
+}
+/* remove price details of courses */
+.edgt-course-price-detail  {
+	display:none! important;
+}
+/* remove tabs (overview) of courses */
+.edgt-tabs.edgt-tabs-standard.edgt-tabs ul.edgt-tabs-nav {
+	display: none !important
+}
+/* remove sidebar menu for mobile */
+.edgt-side-menu-button-opener {
+	display: none !important;
+}
+
+/* force top bar css */
+.edgt-top-bar a {
+	color: #393e50 !important;
+}
+.edgt-top-bar a:hover {
+        color: #fff !important;
+}
+
+/* numbered list alignment for courses */
+.edgt-container ol li,
+.edgt-course-content ol li {
+padding-left: 10px;
+    margin-bottom: 10px;
+    text-align: left;
+    text-indent: -14px;
+}
+
+/* sidebar colors */
+.edgt-sidebar ul li a {
+	color: #393e50 !important;
+}
+.edgt-sidebar ul li a:hover {
+        color: rgb(228, 174, 54) !important;
+}
+
