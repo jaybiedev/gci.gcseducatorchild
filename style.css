@@ -8,17 +8,27 @@ Version: 1.5.1
 Text Domain: educator
 Template: educator
 */
+@import url('https://cloud.gci.org/fonts/gci-font.css');
 @import 'gcsstyle.css';
+
+body, h1, h2, h3, h4, h5, h6 { 
+	font-family: GCI !important;
+}
 .ui-widget.ui-widget-content {
    border: none;
 }
 
 /** overrides of things undesired from template **/
+.edgt-logo-wrapper a{
+   height:45px !important;
+}
 .edgt-content .edgt-container {
 	margin-bottom: 50px;
 }
 /* remove price details of courses */
-.edgt-course-price-detail  {
+.edgt-course-price-detail,
+.edgt-container-inner .edgt-course-wishlist.edgt-icon-only,
+.edgt-container-inner .edgt-ci-price-holder {
 	display:none! important;
 }
 /* remove tabs (overview) of courses */
@@ -36,6 +46,11 @@ Template: educator
 }
 .edgt-top-bar a:hover {
         color: #fff !important;
+}
+
+/* remove bottom info on courses */
+.edgt-course-list-holder.edgt-cl-standard article .edgt-cli-text-holder .edgt-cli-bottom-info {
+	display: none;
 }
 
 /* numbered list alignment for courses */
