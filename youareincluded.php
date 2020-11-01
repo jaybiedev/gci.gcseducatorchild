@@ -40,6 +40,7 @@ if (have_posts()) : while (have_posts()) : the_post();
     }
     .yi-fa {
        padding: 0.5rem;
+	padding-left: 2em;
     }
     #yi-tabs .ui-tabs-active.ui-state-active {
       background-color:transparent;
@@ -49,7 +50,7 @@ if (have_posts()) : while (have_posts()) : the_post();
       color: #444;
     }
     .yi-tab-content {
-        min-height: 500px;
+        min-height: 200px;
         overflow: auto;
     }
  
@@ -79,7 +80,7 @@ if (have_posts()) : while (have_posts()) : the_post();
 			        <?php if (!empty($video_url)) { ?>
                         <div id="tabs-video" class="yi-tab-content">
                             <p>
-                                <video controls="controls" width="80%" height="auto" autoplay="1">
+                                <video controls="controls" width="80%" height="auto">
                                     <source src="<?php echo $video_url;?>" type="video/mp4" />
                                     Your browser does not support the video tag.
                                 </video>
@@ -114,10 +115,41 @@ if (have_posts()) : while (have_posts()) : the_post();
                 </div>
                 <?php if (!empty($instructor)) {?>
                     <h3>About <?php echo $instructor->post_title;?></h3>
-                    <div><?php echo wpautop($instructor->post_content);?></div>
-                    <a href="#">Read more</a>
+                    <div>
+			<span style="float:left;">
+		   	    <a href="<?php echo get_permalink($instructor);?>">
+				<img src="<?php echo get_the_post_thumbnail_url($instructor);?>" class="yi-instructor-img" />
+			    </a>
+		        </span>
+			<div class="yi-instructor-details" style="display:inline-block;margin-left:30px;width: 500px;">
+			   <?php echo wpautop($instructor->post_content);?>
+			</div>
+			
+			<div class="clear-fix yi-related-posts" style="clear:both; margin-top:30px;float:left;">
+			<?php
+			$relatedposts = get_posts(array(
+				'numberposts'	=> -1,
+				'post_type'		=> 'post',
+				'meta_key'		=> 'instructor',
+				'meta_value'	=> $instructor->ID
+			)); 
+
+			?>
+			<?php if (count($relatedposts) > 1) {;?>
+				<h3>Related resources</h3>
+				<ul style="margin-left:40px;">
+				<?php foreach ($relatedposts as $relatedpost) {?>
+					<li>
+					    <a href="<?php echo get_permalink($relatedpost);?>"><?php echo $relatedpost->post_title;?></a>
+					</li>	
+				<?php };?>
+				</ul>
+			<?php };?>
+			</div>
+		    </div>
+                    <!-- <a href="#">Read more</a> -->
                 <?php }?>
-                <?php do_action('educator_edge_page_after_content');?>
+                <?php  do_action('educator_edge_page_after_content');?>
             </div>
             <?php if($edgt_sidebar_layout !== 'no-sidebar') { ?>
                 <div <?php echo educator_edge_get_sidebar_holder_class(); ?>>

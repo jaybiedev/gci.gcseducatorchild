@@ -55,11 +55,13 @@ body, h1, h2, h3, h4, h5, h6 {
 
 /* numbered list alignment for courses */
 .edgt-container ol li,
-.edgt-course-content ol li {
+.edgt-course-content ol li,
+.edgt-container ul li,
+.edgt-course-content ul li {
 padding-left: 10px;
     margin-bottom: 10px;
     text-align: left;
-    text-indent: -14px;
+    text-indent: -16px;
 }
 
 /* sidebar colors */
