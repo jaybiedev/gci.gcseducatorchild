@@ -28,6 +28,16 @@ if (have_posts()) : while (have_posts()) : the_post();
 
     //Get classes for holder and holder inner
     $edgt_holder_params = educator_edge_get_holder_params_blog();
+   
+    $video_poster_url = get_the_post_thumbnail_url($post);
+    if (empty($video_poster_url))
+    {
+	$video_poster_url = get_stylesheet_directory_uri() . "/images/video_poster.png";
+    }
+    // should not hit this
+    if (empty($video_poster_url) && is_object($instructor)) {
+       $video_poster_url = get_the_post_thumbnail_url($instructor);
+    }
     ?>
     <style>
      #yi-tabs.ui-widget.ui-widget-content {
@@ -80,7 +90,7 @@ if (have_posts()) : while (have_posts()) : the_post();
 			        <?php if (!empty($video_url)) { ?>
                         <div id="tabs-video" class="yi-tab-content">
                             <p>
-                                <video controls="controls" width="80%" height="auto">
+                                <video controls="controls" width="80%" height="auto" poster="<?php echo $video_poster_url;?>">
                                     <source src="<?php echo $video_url;?>" type="video/mp4" />
                                     Your browser does not support the video tag.
                                 </video>
@@ -118,7 +128,7 @@ if (have_posts()) : while (have_posts()) : the_post();
                     <div>
 			<span style="float:left;">
 		   	    <a href="<?php echo get_permalink($instructor);?>">
-				<img src="<?php echo get_the_post_thumbnail_url($instructor);?>" class="yi-instructor-img" />
+				<img style="max-width:20em;" src="<?php echo get_the_post_thumbnail_url($instructor);?>" class="yi-instructor-img" />
 			    </a>
 		        </span>
 			<div class="yi-instructor-details" style="display:inline-block;margin-left:30px;width: 500px;">

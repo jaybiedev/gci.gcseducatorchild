@@ -71,6 +71,10 @@ padding-left: 10px;
 .edgt-sidebar ul li a:hover {
         color: rgb(228, 174, 54) !important;
 }
-.edgt-course-content .edgt-btn.edgt-btn-solid:not(.edgt-btn-custom-hover-bg):hover {
+.edgt-course-content .edgt-btn.edgt-btn-solid:not(.edgt-btn-custom-hover-bg):hover,
+.gcs-custom-btn:hover {
 	background-color:#e4ae36 !important;
+}
+.gcs-custom-btn {
+	background-color:#393e50;
 }
