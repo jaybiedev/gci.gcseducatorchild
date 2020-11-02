@@ -14,6 +14,20 @@ Template: educator
 body, h1, h2, h3, h4, h5, h6 { 
 	font-family: GCI !important;
 }
+body {
+	color:#555 !important;
+}
+.font-color-light-gray {
+	color : #efefef;
+}
+.font-color-dark-mode {
+	color:#e4ae36;
+}
+.font-color-dark-mode a,
+.font-color-dark-mode a:hover{
+	color:#e4ae36;
+	text-decoration: underline;
+}
 .ui-widget.ui-widget-content {
    border: none;
 }
@@ -77,4 +91,14 @@ padding-left: 10px;
 }
 .gcs-custom-btn {
 	background-color:#393e50;
+}
+
+/** mobile **/
+
+@media only screen and (max-width: 1024px) {
+   .edgt-sidebar-holder {
+   	 margin-top: 40px;
+    	border-top: 1px solid #ccc;
+    	padding: 40px;
+   }
 }
