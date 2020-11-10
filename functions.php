@@ -1,8 +1,10 @@
 <?php
 require_once( __DIR__ . '/classes/class-widget-instructors-posts-list.php' );
+require_once( __DIR__ . '/classes/class-widget-posts-by-category-list.php');
 
 function register_custom_widgets() {
 	register_widget( 'WP_Widget_Instructors_Posts_List' );
+	register_widget( 'WP_Widget_Posts_By_Category_List' );
 }
 add_action( 'widgets_init', 'register_custom_widgets' );
 

@@ -31,7 +31,13 @@ body {
 .ui-widget.ui-widget-content {
    border: none;
 }
-
+/** homepage upper right buttons **/
+.home.edgt-top-bar-light .edgt-position-right-inner .widget.edgt-button-widget a:hover {
+        background-color:#e4ae36 !important;
+}
+.home.edgt-top-bar-light .edgt-position-right-inner .widget.edgt-button-widget a:hover .edgt-btn-text {
+	color:#393e50 !important;
+}
 /** overrides of things undesired from template **/
 .edgt-logo-wrapper a{
    height:45px !important;
@@ -101,4 +107,15 @@ padding-left: 10px;
     	border-top: 1px solid #ccc;
     	padding: 40px;
    }
+}
+
+/** audio blocks **/
+figure.wp-block-audio {
+    padding: 5px;
+    border: 1px dotted #CCC;
+    margin-bottom: 1.5em;
+}
+figure.wp-block-audio figcaption {
+    margin-top: .5em;
+    margin-bottom: 0;
 }
